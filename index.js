@@ -38,17 +38,24 @@ app.post('/login', async (req, res) => {
     if (req.body.email && req.body.password) {
         let User = await user.findOne(req.body).select("-password  ")  // .select("-password to remove password from result")
 
-        // console.log(User)
-        jwt.sign({ User }, jwtkey, { expiresIn: "2h" }, (err, token) => {
-            if (err) res.send("something whent wrong please try after some time")
-            res.send({ User, auth: token })
-        })
+        console.log(User)
+        if (User) {
+            jwt.sign({ User }, jwtkey, { expiresIn: "2h" }, (err, token) => {
+                if (err) res.send("something whent wrong please try after some time")
+                res.send({ User, auth: token })
+            })
+
+        }
+        else {
+            res.send({ result: "invalid username or password" })
+        }
 
     }
     else {
         res.send({ result: "invalid values" })
     }
 })
+
 
 app.post('/add-product', verifyToken, async (req, res) => {
     console.log(req.body)
