@@ -6,7 +6,7 @@ const user = require('./db/user')
 const product = require('./db/product')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
-const jwtkey = "e-com"
+const jwtkey = "e-comWswigty126*hdn#kjdjj64ljon12dkjhsih@3lkn$khbj&nbb~jhk2jhbb"
 
 //import --end
 
